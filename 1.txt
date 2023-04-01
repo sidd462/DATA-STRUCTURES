@@ -1,0 +1,198 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| school             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.12 sec)
+
+mysql> use world;
+Database changed
+mysql> create database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create database New_database;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| new_database       |
+| performance_schema |
+| sakila             |
+| school             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use new_database;
+Database changed
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> use school;
+Database changed
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++------------------+
+| Tables_in_school |
++------------------+
+| faculty          |
+| student          |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> use new_database;
+Database changed
+mysql> create table new_database(ID int,Name varchar(100), Age int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_new_database |
++------------------------+
+| new_database           |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> describe new_database;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| ID    | int          | YES  |     | NULL    |       |
+| Name  | varchar(100) | YES  |     | NULL    |       |
+| Age   | int          | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.07 sec)
+
+mysql> create table college(Name varchar(100), address varchar(100),price int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_new_database |
++------------------------+
+| college                |
+| new_database           |
++------------------------+
+2 rows in set (0.00 sec)
+
+mysql> describe college;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| Name    | varchar(100) | YES  |     | NULL    |       |
+| address | varchar(100) | YES  |     | NULL    |       |
+| price   | int          | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table Faculty(Faculty_ID int Primary key, Name varchar(100),Course varchar(100) not NULL,Salary int default 1))
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table Faculty(Faculty_ID int Primary key, Name varchar(100),Course varchar(100) not NULL,Salary int default 1));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table Faculty(Faculty_ID int Primary key, Name varchar(100),Course varchar(100) not NULL,Salary int default 10000);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++------------------------+
+| Tables_in_new_database |
++------------------------+
+| college                |
+| faculty                |
+| new_database           |
++------------------------+
+3 rows in set (0.00 sec)
+
+mysql> describe faculty;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| Faculty_ID | int          | NO   | PRI | NULL    |       |
+| Name       | varchar(100) | YES  |     | NULL    |       |
+| Course     | varchar(100) | NO   |     | NULL    |       |
+| Salary     | int          | YES  |     | 10000   |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> describe college;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| Name    | varchar(100) | YES  |     | NULL    |       |
+| address | varchar(100) | YES  |     | NULL    |       |
+| price   | int          | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into college("bvcoe","delhi",1000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"bvcoe","delhi",1000)' at line 1
+mysql> insert into college values("bvcoe","delhi",1000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into college values("iit","mumbai",20000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into college (Name,price) values("nsut",15000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> slect * college;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect * college' at line 1
+mysql> select * college;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'college' at line 1
+mysql> select * from college;
++-------+---------+-------+
+| Name  | address | price |
++-------+---------+-------+
+| bvcoe | delhi   |  1000 |
+| iit   | mumbai  | 20000 |
+| nsut  | NULL    | 15000 |
++-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> describe faculty;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| Faculty_ID | int          | NO   | PRI | NULL    |       |
+| Name       | varchar(100) | YES  |     | NULL    |       |
+| Course     | varchar(100) | NO   |     | NULL    |       |
+| Salary     | int          | YES  |     | 10000   |       |
++------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into faculty values(1234,"abc","xyz",10000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into faculty (Faculty_ID,course,salary)values(1234,"qwe",1000);
+ERROR 1062 (23000): Duplicate entry '1234' for key 'faculty.PRIMARY'
+mysql> insert into faculty (Faculty_ID,course,salary)values(122234,"qwe",1000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculty (Faculty_ID,salary)values(122234,1000);
+ERROR 1364 (HY000): Field 'Course' doesn't have a default value
+mysql> select * from faculty;
++------------+------+--------+--------+
+| Faculty_ID | Name | Course | Salary |
++------------+------+--------+--------+
+|       1234 | abc  | xyz    |  10000 |
+|     122234 | NULL | qwe    |   1000 |
++------------+------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql>
